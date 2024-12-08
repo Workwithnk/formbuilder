@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import SingleDragEle from "./SingleDragEle";
 
@@ -18,7 +17,7 @@ const DragDropList = ({ selectedQueType, setSelectedQueType }) => {
     const draggedIndex = parseInt(e.dataTransfer.getData("draggedIndex"), 10);
     if (draggedIndex === position) return;
 
-    const reorderedItems = Array.from(items);
+    const reorderedItems = Array.from(selectedQueType);
     const [draggedItem] = reorderedItems.splice(draggedIndex, 1);
     reorderedItems.splice(position, 0, draggedItem);
 
@@ -26,24 +25,24 @@ const DragDropList = ({ selectedQueType, setSelectedQueType }) => {
       ...item,
       index: i,
     }));
-    setItems(updatedItems);
+    setSelectedQueType(updatedItems);
   };
 
   useEffect(() => {
-    setItems([...selectedQueType]);
+
   }, [selectedQueType.length])
 
 
   return (
     <div>
-      {items.map((item, index) => (
+      {selectedQueType.map((item, index) => (
         <div
           key={index}
           onDragOver={handleDragOver}
           onDrop={(e) => handleDrop(e, index)}
           className=" p-4 my-2 border mx-5 rounded-2xl border-[#E1E4E8]"
         >
-          <SingleDragEle handleDragStart={handleDragStart} item={item} index={index} />
+          <SingleDragEle selectedQueType={selectedQueType} setSelectedQueType={setSelectedQueType} handleDragStart={handleDragStart} item={item} index={index} />
         </div>
       ))}
     </div>
