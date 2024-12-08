@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import SingleDragEle from "./SingleDragEle";
 
 const DragDropList = ({ selectedQueType, setSelectedQueType }) => {
-
-  const [items, setItems] = useState([]);
 
   const handleDragStart = (e, position) => {
     e.dataTransfer.setData("draggedIndex", position);
