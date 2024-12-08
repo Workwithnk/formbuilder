@@ -1,12 +1,16 @@
+import { changeFormName } from '@/store/reducer/formReducer';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { MdArrowOutward } from "react-icons/md";
+import { useDispatch } from 'react-redux';
 
-function FormHeader() {
-  const initialFormName = "Untitled form"
+function FormHeader({ form }) {
+  const initialFormName = form.formName
   const [inp, setInp] = useState(initialFormName)
   const [formName, setFormName] = useState(initialFormName);
   const [showInp, setShowInp] = useState(false);
+  const dispatch = useDispatch()
+
   function handleShowInp() {
     setShowInp(true)
   }
@@ -15,6 +19,7 @@ function FormHeader() {
     e.preventDefault();
     setFormName(inp);
     setShowInp(false);
+    dispatch(changeFormName({ key: form.key, newName: inp }))
   }
 
   return (

@@ -1,15 +1,14 @@
+'use client';
 import "./globals.css";
-
-export const metadata = {
-  title: "NextForm | The form builder",
-  description: "Realtime form builder made simplified",
-};
-
+import { Provider } from 'react-redux'
+import { store } from "@/store/store";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        {children}
+        <Provider store={store}>
+          {children}
+        </Provider>
       </body>
     </html>
   );

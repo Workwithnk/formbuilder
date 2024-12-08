@@ -4,31 +4,36 @@ import React, { useState } from 'react'
 import { FiPlus } from 'react-icons/fi';
 import { v4 as uuidv4 } from "uuid";
 import { questionTypeArr } from '@/constants/questionTypeArr';
+import { useDispatch, useSelector } from 'react-redux';
+import { setQuestions } from '@/store/reducer/formReducer';
+import { updateIndex } from '@/store/reducer/queReducer';
 
 
-function AddQuestion({ selectedQueType, setSelectedQueType }) {
+function AddQuestion({ form, selectedQueType, setSelectedQueType }) {
+  const questions = useSelector(state => state.queReducer);
+  const formReducer = useSelector(state => state.formReducer);
+  const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const [rotateIcon, setRotateIcon] = useState(false);
   const [inpType, setInpType] = useState('');
-  const [inpTypeArr, setInpTypeArr] = useState(questionTypeArr)
+  const [inpTypeArr, setInpTypeArr] = useState(questions)
   function handleShowMenu() {
     setShowMenu(!showMenu);
     setRotateIcon(!rotateIcon);
   }
 
   function handleQuestionSelection(ques) {
-    console.log("Selected Ques:", ques);
-    ques.key = uuidv4();
     setShowMenu(!showMenu);
     setRotateIcon(!rotateIcon);
-    setSelectedQueType([...selectedQueType, ques]); //pushing the selected questions type
+    dispatch(updateIndex({ key: ques.key, newIndex: uuidv4() }))
+    dispatch(setQuestions({ key: form.key, que: ques }))
   }
 
   function handleInput(e) {
     const inpVal = e.target.value;
     setInpType(inpVal);
     const fltQueryArr = questionTypeArr.filter(item => item.text.toLowerCase().includes(inpVal.toLowerCase()));
-    setInpTypeArr(fltQueryArr);
+    inpVal.length > 0 ? setInpTypeArr(fltQueryArr) : setInpTypeArr(questions)
   }
 
   return (

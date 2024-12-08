@@ -7,7 +7,7 @@ import Date from '../QuesTypes/Date';
 
 function BuildQues({ selectQuesType }) {
   const quesType = selectQuesType.text.trim().toLowerCase();
-  console.log("QUS", quesType);
+
   if (quesType === 'long answer') {
     return <LongAns />
   }
