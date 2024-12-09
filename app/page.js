@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 export default function Home() {
   const router = useRouter();
   const formData = useSelector(state => state.formReducer);
-  console.log(formData);
   const savedForm = formData.filter(data => data.formStatus === 'save')
   const pubForm = formData.filter(data => data.formStatus === 'publish')
 

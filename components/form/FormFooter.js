@@ -14,7 +14,6 @@ function FormFooter() {
   const baseQueText = 'Write a question';
   const router = useRouter();
   const dispatch = useDispatch();
-  console.log(thisForm);
 
   function changeFontColor(status) {
     const issueId = []

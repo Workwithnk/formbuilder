@@ -1,3 +1,4 @@
 # formbuilder
 
-Nextjs formbuilder app
+Tech stack:
+Nextjs + tailwind + Redux toolkit
