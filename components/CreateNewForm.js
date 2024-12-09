@@ -1,4 +1,5 @@
 import { createNewForm } from '@/store/reducer/formReducer';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react'
 import { useDispatch } from "react-redux";
@@ -18,6 +19,7 @@ function CreateNewForm() {
     <section className="flex flex-col items-center my-10 border-b border-gray-200 pb-5">
       <h1 className=" text-2xl font-bold">Welcome to NextForm</h1>
       <p className="text-base">Create your own forms with ease</p>
+      <p className="text-base">Made by <Link target='_blank' href={'https://peerlist.io/nikhilpatel'}>Nikhil Kavathiya</Link></p>
       <button onClick={handleFormCreate} className={`mt-2 border border-gray-300 rounded-lg px-4 py-2 hover:bg-black hover:text-white transition-colors`} >Build form</button>
     </section>
   )

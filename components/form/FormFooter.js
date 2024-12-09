@@ -48,10 +48,13 @@ function FormFooter() {
   return (
     <>
       {thisForm.ques && thisForm.ques.length > 0 &&
-        <div className="flex bg-[#F6F8FAE5] justify-between items-center px-5 py-3 border-t border-[#E1E4E8]">
-          <button onClick={handleSave} className=' flex items-center hover:bg-black hover:text-white border border-gray-400 px-2 py-1 rounded-lg'> <IoDocumentTextOutline className='w-4 mr-1' /> Save as Draft</button>
-          <button onClick={handlePublish} className='flex items-center px-2 bg-[#00AA45] text-white py-1 rounded-lg'> <IoCheckmarkSharp className='w-4 mr-1' />Publish Form</button>
-        </div>
+        <>
+          <div className="flex bg-[#F6F8FAE5] justify-between items-center px-5 py-3 border-t border-[#E1E4E8]">
+            <button onClick={handleSave} className=' flex items-center hover:bg-black hover:text-white border border-gray-400 px-2 py-1 rounded-lg'> <IoDocumentTextOutline className='w-4 mr-1' /> Save as Draft</button>
+            <button onClick={handlePublish} className='flex items-center px-2 bg-[#00AA45] text-white py-1 rounded-lg'> <IoCheckmarkSharp className='w-4 mr-1' />Publish Form</button>
+          </div>
+          <p className=' text-sm text-left my-2'>{`* click on title that you want to change`}</p>
+        </>
       }
     </>
   )
