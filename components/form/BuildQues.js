@@ -9,7 +9,7 @@ function BuildQues({ selectQuesType, form }) {
   const quesType = selectQuesType.text.trim().toLowerCase();
 
   if (quesType === 'long answer') {
-    return <LongAns selectQuesType={selectQuesType} />
+    return <LongAns selectQuesType={selectQuesType} form={form} />
   }
 
   if (quesType === "short answer") {
@@ -17,15 +17,15 @@ function BuildQues({ selectQuesType, form }) {
   }
 
   if (quesType === "single select") {
-    return <SingleSelect selectQuesType={selectQuesType} />
+    return <SingleSelect selectQuesType={selectQuesType} form={form} />
   }
 
   if (quesType === "url") {
-    return <Url selectQuesType={selectQuesType} />
+    return <Url selectQuesType={selectQuesType} form={form} />
   }
 
   if (quesType === "date") {
-    return <Date selectQuesType={selectQuesType} />
+    return <Date selectQuesType={selectQuesType} form={form} />
   }
 
   return <h1>Not found</h1>

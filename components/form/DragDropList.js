@@ -36,7 +36,7 @@ const DragDropList = () => {
   if (!thisForm) return <div>Loading...</div>;
 
   return (
-    <div>
+    <div className=" flex flex-col gap-1 my-2">
       {thisForm.ques.map((item, index) => (
         <div
           key={item.index}

@@ -6,7 +6,6 @@ export const questionTypeArr = [
     text: 'Short answer',
     key: 'shortanswer',
     que: 'Write a question',
-    helpText: 'Write a help text or caption (leave empty if not needed).'
   },
   {
     index: uuidv4(),
@@ -14,7 +13,6 @@ export const questionTypeArr = [
     text: 'Long Answer',
     key: 'longanswer',
     que: 'Write a question',
-    helpText: 'Write a help text or caption (leave empty if not needed).'
   },
   {
     index: uuidv4(),
@@ -22,7 +20,10 @@ export const questionTypeArr = [
     text: 'Single select',
     key: 'singleselect',
     que: 'Write a question',
-    helpText: 'Write a help text or caption (leave empty if not needed).'
+    options: [{
+      optionId: uuidv4(),
+      optionName: '',
+    }]
   },
   {
     index: uuidv4(),
@@ -30,13 +31,11 @@ export const questionTypeArr = [
     text: 'URL',
     key: 'url',
     que: 'Write a question',
-    helpText: 'Write a help text or caption (leave empty if not needed).'
   },
   {
     index: uuidv4(),
     img: '/date.png',
     text: 'Date',
     que: 'Write a question',
-    helpText: 'Write a help text or caption (leave empty if not needed).'
   },
 ]

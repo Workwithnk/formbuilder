@@ -5,7 +5,6 @@ import { changeQues } from '@/store/reducer/formReducer';
 
 function ShortAns({ selectQuesType, form }) {
   const thisQues = form.ques.filter(fq => fq.index === selectQuesType.index)[0];
-  console.log("THIS QUES>>>>", thisQues);
   const [inp, setInp] = useState(thisQues.que)
   const [formName, setFormName] = useState(thisQues.que);
   const [showInp, setShowInp] = useState(false);

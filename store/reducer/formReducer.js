@@ -1,12 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from "uuid";
 
-let formInitialDetails = {
-  formName: "Nikhil's form",
-  key: '',
-  ques: []
-}
-
 const initialState = [];
 
 export const formSlice = createSlice({
@@ -14,8 +8,9 @@ export const formSlice = createSlice({
   initialState,
   reducers: {
     createNewForm: (state, action) => {
-      formInitialDetails.key = action.payload;
-      state.push(...state, formInitialDetails);
+      const { formKey } = action.payload;
+      let newForm = { formName: 'Untitled form', key: formKey, ques: [], formStatus: '' }
+      state.push(...state, newForm);
     },
     getForm: (state) => {
       return state;
@@ -79,9 +74,40 @@ export const formSlice = createSlice({
           })
         }
       })
+    },
+    addNewOption: (state, action) => {
+      const { formKey, quesIndex } = action.payload;
+      state.forEach(form => {
+        if (form.key === formKey) {
+          form.ques.forEach(que => {
+            if (que.index === quesIndex) {
+              que.options.push({
+                optionId: uuidv4(),
+                optionName: '',
+              })
+            }
+          })
+        }
+      })
+    },
+    changeOptionName: (state, action) => {
+      const { formKey, quesIndex, optionId, optionName } = action.payload;
+      state.forEach(form => {
+        if (form.key === formKey) {
+          form.ques.forEach(que => {
+            if (que.index === quesIndex) {
+              que.options.forEach(opt => {
+                if (opt.optionId === optionId) {
+                  opt.optionName = optionName
+                }
+              })
+            }
+          })
+        }
+      })
     }
   },
 })
 
-export const { createNewForm, getForm, changeFormName, setQuestions, getQuestionsByForm, updateAllQues, changeQuesType, changeQues } = formSlice.actions
+export const { createNewForm, getForm, changeFormName, setQuestions, getQuestionsByForm, updateAllQues, changeQuesType, changeQues, addNewOption, changeOptionName } = formSlice.actions
 export default formSlice.reducer
