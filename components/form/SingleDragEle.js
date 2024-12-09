@@ -12,6 +12,8 @@ function SingleDragEle({ form, item, handleDragStart, index }) {
     text: item.text,
     img: item.img,
     index: item.index,
+    que: item.que,
+    helpText: item.helpText
   });
   const [showQueMenu, setShowQuesMenu] = useState(false);
   const dispatch = useDispatch();
@@ -19,8 +21,6 @@ function SingleDragEle({ form, item, handleDragStart, index }) {
   const handleTypeClick = ques => {
     setSelectQueType({ text: ques.text, img: ques.img });
     dispatch(changeQuesType({ formKey: form.key, quesKey: item.index, ...ques }));
-    console.log("form>>", form)
-
   };
 
   useEffect(() => {
@@ -28,15 +28,17 @@ function SingleDragEle({ form, item, handleDragStart, index }) {
       text: item.text,
       img: item.img,
       index: item.index,
+      que: item.que,
+      helpText: item.helpText
     });
   }, [item]);
 
   return (
     <div className="flex flex-col">
-      <div className="flex justify-between items-center">
-        <BuildQues selectQuesType={selectQuesType} />
+      <div className="flex justify-between items-center relative">
+        <BuildQues selectQuesType={selectQuesType} form={form} />
 
-        <div className="flex">
+        <div className="flex absolute top-0 right-0">
           <button
             className="relative mr-2 flex"
             onClick={() => setShowQuesMenu(!showQueMenu)}

@@ -5,28 +5,38 @@ export const questionTypeArr = [
     img: '/shortans.png',
     text: 'Short answer',
     key: 'shortanswer',
+    que: 'Write a question',
+    helpText: 'Write a help text or caption (leave empty if not needed).'
   },
   {
     index: uuidv4(),
     img: '/longans.png',
     text: 'Long Answer',
     key: 'longanswer',
+    que: 'Write a question',
+    helpText: 'Write a help text or caption (leave empty if not needed).'
   },
   {
     index: uuidv4(),
     img: '/singleselect.png',
     text: 'Single select',
     key: 'singleselect',
+    que: 'Write a question',
+    helpText: 'Write a help text or caption (leave empty if not needed).'
   },
   {
     index: uuidv4(),
     img: '/url.png',
     text: 'URL',
     key: 'url',
+    que: 'Write a question',
+    helpText: 'Write a help text or caption (leave empty if not needed).'
   },
   {
     index: uuidv4(),
     img: '/date.png',
-    text: 'Date'
+    text: 'Date',
+    que: 'Write a question',
+    helpText: 'Write a help text or caption (leave empty if not needed).'
   },
 ]

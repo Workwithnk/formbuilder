@@ -5,27 +5,27 @@ import SingleSelect from '../QuesTypes/SingleSelect';
 import Url from '../QuesTypes/Url';
 import Date from '../QuesTypes/Date';
 
-function BuildQues({ selectQuesType }) {
+function BuildQues({ selectQuesType, form }) {
   const quesType = selectQuesType.text.trim().toLowerCase();
 
   if (quesType === 'long answer') {
-    return <LongAns />
+    return <LongAns selectQuesType={selectQuesType} />
   }
 
   if (quesType === "short answer") {
-    return <ShortAns />
+    return <ShortAns selectQuesType={selectQuesType} form={form} />
   }
 
   if (quesType === "single select") {
-    return <SingleSelect />
+    return <SingleSelect selectQuesType={selectQuesType} />
   }
 
   if (quesType === "url") {
-    return <Url />
+    return <Url selectQuesType={selectQuesType} />
   }
 
   if (quesType === "date") {
-    return <Date />
+    return <Date selectQuesType={selectQuesType} />
   }
 
   return <h1>Not found</h1>

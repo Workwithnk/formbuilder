@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from "uuid";
 
 let formInitialDetails = {
   formName: "Nikhil's form",
@@ -60,13 +61,27 @@ export const formSlice = createSlice({
             if (que.index === quesKey) {
               que.img = img;
               que.text = text;
+              que.index = uuidv4(),
+                que.key = text.trim().toLowerCase()
             }
           })
         }
       });
+    },
+    changeQues: (state, action) => {
+      const { formKey, quesIndex, newQue } = action.payload;
+      state.forEach(form => {
+        if (form.key === formKey) {
+          form.ques.forEach(que => {
+            if (que.index === quesIndex) {
+              que.que = newQue;
+            }
+          })
+        }
+      })
     }
   },
 })
 
-export const { createNewForm, getForm, changeFormName, setQuestions, getQuestionsByForm, updateAllQues, changeQuesType } = formSlice.actions
+export const { createNewForm, getForm, changeFormName, setQuestions, getQuestionsByForm, updateAllQues, changeQuesType, changeQues } = formSlice.actions
 export default formSlice.reducer
