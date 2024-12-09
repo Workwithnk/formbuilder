@@ -1,25 +1,59 @@
 'use client';
-import { createNewForm } from "@/store/reducer/formReducer";
+import CreateNewForm from "@/components/CreateNewForm";
 import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
+import { useSelector } from "react-redux";
 
 export default function Home() {
-  const dispatch = useDispatch();
-  const formKey = uuidv4();
-  const router = useRouter()
+  const router = useRouter();
+  const formData = useSelector(state => state.formReducer);
+  console.log(formData);
+  const savedForm = formData.filter(data => data.formStatus === 'save')
+  const pubForm = formData.filter(data => data.formStatus === 'publish')
 
-  const handleFormCreate = () => {
-    dispatch(createNewForm({ formKey }));
-    router.push(`/build-form?formKey=${formKey}`)
+
+  const editForm = (data) => {
+    router.push(`/build-form?formKey=${data.key}`)
+  }
+
+  const viewForm = (data) => {
+    router.push(`/view-form?formKey=${data.key}`)
   }
 
   return (
     <main>
-      <section className="flex flex-col items-center my-10">
-        <h1 className=" text-2xl font-bold">Welcome to NextForm</h1>
-        <p className="text-base">Create your own forms with ease</p>
-        <button onClick={handleFormCreate} className={`mt-2 border border-gray-300 rounded-lg px-4 py-2 hover:bg-black hover:text-white transition-colors`} >Build form</button>
+      <CreateNewForm />
+      <section className=" px-3">
+        {savedForm.length > 0 && <h2 className=" mb-2">
+          Saved Form
+        </h2>}
+        <div className=" grid grid-cols-4 gap-3">
+          {
+            savedForm.length > 0 && savedForm.map((data, i) => {
+              return <div key={i} className=" shadow border p-3 border-gray-200 rounded-lg">
+                <h5>{data.formName}</h5>
+                {data.ques.length > 0 && <p>Ques: {data.ques.length}</p>}
+                <button className=" px-3 py-1 bg-green-500 rounded  mr-2 mt-1 outline-none" onClick={() => editForm(data)}>Edit</button>
+                <button className=" px-3 py-1 bg-blue-500 rounded outline-none" onClick={() => viewForm(data)}>View</button>
+              </div>
+            })
+          }
+        </div>
+      </section>
+      <section className=" px-3 mt-5">
+        {pubForm.length > 0 && <h2 className=" mb-2">
+          View Form
+        </h2>}
+        <div className=" grid grid-cols-4 gap-3">
+          {
+            pubForm.length > 0 && pubForm.map((data, i) => {
+              return <div key={i} className=" shadow border p-3 border-gray-200 rounded-lg">
+                <h5>{data.formName}</h5>
+                {data.ques.length > 0 && <p>Ques: {data.ques.length}</p>}
+                <button className=" px-3 py-1 bg-blue-500 rounded outline-none" onClick={() => viewForm(data)}>View</button>
+              </div>
+            })
+          }
+        </div>
       </section>
     </main>
   );

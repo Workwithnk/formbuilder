@@ -10,7 +10,7 @@ export const formSlice = createSlice({
     createNewForm: (state, action) => {
       const { formKey } = action.payload;
       let newForm = { formName: 'Untitled form', key: formKey, ques: [], formStatus: '' }
-      state.push(...state, newForm);
+      state.push(newForm);
     },
     getForm: (state) => {
       return state;
@@ -105,9 +105,17 @@ export const formSlice = createSlice({
           })
         }
       })
+    },
+    changeFormStatus: (state, action) => {
+      const { formKey, status } = action.payload;
+      state.forEach(form => {
+        if (form.key === formKey) {
+          form.formStatus = status;
+        }
+      })
     }
   },
 })
 
-export const { createNewForm, getForm, changeFormName, setQuestions, getQuestionsByForm, updateAllQues, changeQuesType, changeQues, addNewOption, changeOptionName } = formSlice.actions
+export const { createNewForm, getForm, changeFormName, setQuestions, getQuestionsByForm, updateAllQues, changeQuesType, changeQues, addNewOption, changeOptionName, changeFormStatus } = formSlice.actions
 export default formSlice.reducer

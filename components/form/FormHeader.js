@@ -26,7 +26,7 @@ function FormHeader({ form }) {
   return (
     <div className="flex justify-between items-center px-6 py-3 border-b border-[#E1E4E8]">
       <EditCompo showInp={showInp} handleShowInp={handleShowInp} formName={formName} handleForm={handleForm} inp={inp} setInp={setInp} percent={50} />
-      <Link href={"/prev-form"} className={`flex text-base border border-gray-300 rounded-lg px-4 py-2 hover:bg-black hover:text-white transition-colors`}> Preview Form <MdArrowOutward className=' w-4 h-auto' /></Link>
+      <Link href={`/view-form?formKey=${form.key}`} className={`flex text-base border border-gray-300 rounded-lg px-4 py-2 hover:bg-black hover:text-white transition-colors`}> Preview Form <MdArrowOutward className=' w-4 h-auto' /></Link>
     </div>
   )
 }

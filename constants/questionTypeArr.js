@@ -35,6 +35,7 @@ export const questionTypeArr = [
   {
     index: uuidv4(),
     img: '/date.png',
+    key: 'date',
     text: 'Date',
     que: 'Write a question',
   },

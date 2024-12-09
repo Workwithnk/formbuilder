@@ -31,10 +31,10 @@ function SingleSelect({ selectQuesType, form }) {
     setOptionArr([...thisQues.options])
   }, [thisQues.options.length])
 
-  console.log(form)
+
   return (
     <div className=' w-full '>
-      <EditCompo showInp={showInp} handleShowInp={handleShowInp} formName={formName} handleForm={handleForm} inp={inp} setInp={setInp} percent={80} color={'#959DA5'} />
+      <EditCompo id={selectQuesType.index} showInp={showInp} handleShowInp={handleShowInp} formName={formName} handleForm={handleForm} inp={inp} setInp={setInp} percent={80} color={'#959DA5'} />
       <div className=' flex flex-col gap-2 mt-2'>
         {
           optionArr.length > 0 && optionArr.map((option, i) => {

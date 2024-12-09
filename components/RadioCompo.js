@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 function RadioCompo({ option, i, optionArr, form, selectQuesType }) {
   const [optionVal, setOptionVal] = useState('');
   const dispatch = useDispatch();
-  console.log("QUES", form)
   function handleAddOption() {
     dispatch(addNewOption({ formKey: form.key, quesIndex: selectQuesType.index }))
   }

@@ -23,7 +23,7 @@ function ShortAns({ selectQuesType, form }) {
 
   return (
     <div className=' w-full '>
-      <EditCompo showInp={showInp} handleShowInp={handleShowInp} formName={formName} handleForm={handleForm} inp={inp} setInp={setInp} percent={80} color={'#959DA5'} />
+      <EditCompo id={selectQuesType.index} showInp={showInp} handleShowInp={handleShowInp} formName={formName} handleForm={handleForm} inp={inp} setInp={setInp} percent={80} color={'#959DA5'} />
       <input className='w-full p-2 border border-[#E1E4E8] rounded-lg mt-2 bg-[#F6F8FA]' type='text' disabled />
     </div>
   )
